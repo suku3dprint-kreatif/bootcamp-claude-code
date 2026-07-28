@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kalkulator Kesiapan Finansial Menikah</title>
+<meta name="description" content="Cek kesehatan finansial dan kesiapanmu untuk menikah: penghasilan, dana darurat, investasi, daya beli, dan mitigasi risiko." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand">💍 <span>Mapan?</span></div>
+    <p class="tagline">Kalkulator Kesiapan Finansial untuk Menikah</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="intro">
+    <h1>Apakah aku sudah cukup mapan untuk menikah?</h1>
+    <p>
+      Isi data finansialmu (atau gabungan dengan calon pasangan) di bawah ini. Kalkulator ini akan menilai
+      <strong>lima pilar kesiapan finansial</strong>: kecukupan penghasilan, keamanan utang, dana darurat,
+      kebiasaan menabung &amp; investasi, serta proteksi risiko &mdash; lalu memberi skor dan rekomendasi konkret.
+    </p>
+    <p class="disclaimer">
+      ⚠️ Ini adalah alat bantu edukasi berbasis prinsip perencanaan keuangan umum (rasio utang, dana darurat,
+      tingkat menabung, dsb), <em>bukan</em> nasihat keuangan profesional. Angka acuan biaya hidup bersifat estimasi kasar
+      dan sebaiknya kamu sesuaikan dengan kondisi riil kotamu.
+    </p>
+  </section>
+
+  <form id="calc-form">
+
+    <section class="card">
+      <h2><span class="num">1</span> Penghasilan &amp; Rumah Tangga</h2>
+      <div class="grid-2">
+        <label>
+          Penghasilan bersih bulananmu (take-home pay)
+          <input type="number" min="0" step="50000" id="incomeSelf" placeholder="cth. 8000000" required />
+        </label>
+        <label>
+          Penghasilan bersih bulanan calon pasangan (jika digabung)
+          <input type="number" min="0" step="50000" id="incomePartner" placeholder="cth. 6000000" />
+        </label>
+      </div>
+      <label class="checkbox-row">
+        <input type="checkbox" id="combineFinance" checked />
+        Keuangan akan digabung setelah menikah
+      </label>
+      <div class="grid-2">
+        <label>
+          Kota/wilayah tempat tinggal setelah menikah
+          <select id="cityTier">
+            <option value="1">Kota besar (Jabodetabek, Bandung, Surabaya, Medan, dll)</option>
+            <option value="2">Kota sedang (ibu kota provinsi lainnya)</option>
+            <option value="3">Kota kecil / kabupaten</option>
+          </select>
+        </label>
+        <label>
+          Rencana jumlah anak dalam waktu dekat
+          <input type="number" min="0" max="6" step="1" id="dependents" value="0" />
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">2</span> Pengeluaran &amp; Utang Bulanan</h2>
+      <div class="grid-2">
+        <label>
+          Total pengeluaran rutin bulanan (makan, transport, tagihan, sewa/KPR, dll)
+          <input type="number" min="0" step="50000" id="monthlyExpenses" placeholder="cth. 6000000" required />
+        </label>
+        <label>
+          Termasuk di atas: cicilan KPR / sewa tempat tinggal
+          <input type="number" min="0" step="50000" id="housingCost" placeholder="cth. 2000000" value="0" />
+        </label>
+      </div>
+      <label>
+        Total cicilan utang konsumtif bulanan (kartu kredit, KTA, cicilan kendaraan, paylater, dll &mdash; di luar KPR)
+        <input type="number" min="0" step="50000" id="debtInstallments" placeholder="cth. 1000000" value="0" />
+      </label>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">3</span> Dana Darurat &amp; Investasi</h2>
+      <div class="grid-2">
+        <label>
+          Total dana darurat saat ini (tabungan likuid, bukan investasi jangka panjang)
+          <input type="number" min="0" step="100000" id="emergencyFund" placeholder="cth. 30000000" value="0" />
+        </label>
+        <label>
+          Nominal ditabung + diinvestasikan setiap bulan
+          <input type="number" min="0" step="50000" id="monthlySavingsInvestment" placeholder="cth. 1500000" value="0" />
+        </label>
+      </div>
+      <label>
+        Total aset investasi saat ini (reksadana, saham, emas, dll) &mdash; opsional, untuk konteks
+        <input type="number" min="0" step="100000" id="investmentAssets" placeholder="cth. 10000000" value="0" />
+      </label>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">4</span> Proteksi &amp; Mitigasi Risiko</h2>
+      <div class="grid-2">
+        <label class="checkbox-row">
+          <input type="checkbox" id="hasHealthInsurance" />
+          Punya asuransi kesehatan (BPJS/swasta) yang aktif
+        </label>
+        <label class="checkbox-row">
+          <input type="checkbox" id="hasLifeInsurance" />
+          Punya asuransi jiwa aktif
+        </label>
+      </div>
+      <label>
+        Nilai pertanggungan (Uang Pertanggungan) asuransi jiwa, jika ada
+        <input type="number" min="0" step="1000000" id="lifeInsuranceCoverage" placeholder="cth. 500000000" value="0" />
+      </label>
+    </section>
+
+    <section class="card">
+      <h2><span class="num">5</span> Rencana Dana Pernikahan</h2>
+      <div class="grid-2">
+        <label>
+          Estimasi total biaya pernikahan
+          <input type="number" min="0" step="500000" id="weddingCostEstimate" placeholder="cth. 100000000" value="0" />
+        </label>
+        <label>
+          Dana yang sudah tersedia untuk itu (tanpa berutang)
+          <input type="number" min="0" step="500000" id="weddingFundsAvailable" placeholder="cth. 60000000" value="0" />
+        </label>
+      </div>
+      <label class="checkbox-row">
+        <input type="checkbox" id="weddingFundedByDebt" />
+        Kekurangan dana pernikahan rencananya ditutup dengan berutang (pinjol, KTA, kartu kredit, dll)
+      </label>
+    </section>
+
+    <button type="submit" class="btn-primary">Hitung Skor Kesiapan Finansial</button>
+  </form>
+
+  <section id="results" class="results hidden" aria-live="polite">
+    <h2>Hasil Analisis Kesiapan Finansialmu</h2>
+
+    <div class="score-panel">
+      <div class="gauge" id="gauge">
+        <div class="gauge-inner">
+          <span id="scoreNumber">0</span>
+          <small>/ 100</small>
+        </div>
+      </div>
+      <div class="score-summary">
+        <h3 id="scoreLabel">&mdash;</h3>
+        <p id="scoreDesc"></p>
+      </div>
+    </div>
+
+    <div class="breakdown" id="breakdown"></div>
+
+    <div class="recommendations">
+      <h3>Rekomendasi Tindak Lanjut</h3>
+      <ul id="recoList"></ul>
+    </div>
+  </section>
+
+  <section class="methodology card">
+    <h2>Metodologi Singkat</h2>
+    <p>Skor 0&ndash;100 merupakan gabungan berbobot dari lima pilar, memakai acuan yang umum dipakai dalam edukasi perencanaan keuangan (mis. rasio utang terhadap penghasilan, aturan alokasi menabung, dan standar bulan dana darurat untuk keluarga):</p>
+    <ul class="method-list">
+      <li><strong>Kecukupan Penghasilan (25%)</strong> &mdash; penghasilan gabungan dibandingkan estimasi biaya hidup layak untuk jumlah anggota keluarga di kotamu.</li>
+      <li><strong>Keamanan Utang (15%)</strong> &mdash; total cicilan (KPR + utang konsumtif) idealnya di bawah 35% penghasilan, idealnya di bawah 20%.</li>
+      <li><strong>Dana Darurat (20%)</strong> &mdash; target 6 bulan pengeluaran untuk pasangan, +1 bulan per rencana anak (maks 12 bulan).</li>
+      <li><strong>Tabungan &amp; Investasi (20%)</strong> &mdash; idealnya minimal 20% penghasilan dialokasikan untuk menabung/investasi (prinsip mirip aturan 50/30/20).</li>
+      <li><strong>Proteksi Risiko (10%)</strong> &mdash; kepemilikan asuransi kesehatan &amp; jiwa dengan nilai pertanggungan memadai (idealnya &ge; 5&times; penghasilan tahunan pencari nafkah utama).</li>
+      <li><strong>Kesiapan Dana Pernikahan (10%)</strong> &mdash; proporsi biaya pernikahan yang sudah tersedia tanpa berutang.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Dibuat sebagai alat bantu refleksi finansial. Selalu diskusikan keputusan finansial besar dengan pasangan dan, bila perlu, perencana keuangan bersertifikat.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
