@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RTCF Prompt Generator — Bikin Prompt AI Terbaik</title>
+<meta name="description" content="Generator prompt AI berbasis framework Role, Task, Context, Format. Dibuat untuk orang awam biar hasil dari AI maksimal dan hemat token." />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+
+  <header class="hero">
+    <span class="badge">Framework R·T·C·F</span>
+    <h1>Bikin Prompt AI Terbaik, Tanpa Ribet</h1>
+    <p class="lede">
+      Isi 4 kolom di bawah — <strong>Role</strong> (peran), <strong>Task</strong> (tugas),
+      <strong>Context</strong> (konteks), <strong>Format</strong> (bentuk hasil) — dan dapatkan
+      prompt yang rapi, jelas, dan hemat token. Cocok buat siapa saja, nggak perlu jago prompting.
+    </p>
+  </header>
+
+  <section class="examples" aria-label="Contoh cepat">
+    <span class="examples-label">Coba contoh:</span>
+    <div class="chip-row" id="exampleChips"></div>
+  </section>
+
+  <main class="grid">
+
+    <section class="panel form-panel">
+      <div class="field" data-field="role">
+        <label for="roleInput">
+          <span class="field-title"><span class="field-letter">R</span>Role — Peran AI-nya apa?</span>
+        </label>
+        <p class="hint">Tentukan AI ini "jadi siapa". Makin spesifik, makin relevan jawabannya.</p>
+        <textarea id="roleInput" placeholder="Contoh: copywriter marketing berpengalaman 10 tahun di industri F&amp;B" rows="2"></textarea>
+        <p class="hint-bad">Hindari: "penulis" (terlalu umum)</p>
+      </div>
+
+      <div class="field" data-field="task">
+        <label for="taskInput">
+          <span class="field-title"><span class="field-letter">T</span>Task — Tugas apa yang harus dikerjakan?</span>
+        </label>
+        <p class="hint">Gunakan kata perintah yang jelas dan hasil akhir yang konkret.</p>
+        <textarea id="taskInput" placeholder="Contoh: Buatkan 5 variasi caption Instagram untuk promo diskon 20%" rows="2"></textarea>
+        <p class="hint-bad">Hindari: "bantuin bikin sesuatu buat promosi"</p>
+      </div>
+
+      <div class="field" data-field="context">
+        <label for="contextInput">
+          <span class="field-title"><span class="field-letter">C</span>Context — Info latar belakang apa yang relevan?</span>
+        </label>
+        <p class="hint">Target audiens, batasan, tone, data pendukung. Ini yang paling sering dilupakan padahal paling penting.</p>
+        <textarea id="contextInput" placeholder="Contoh: target audiens perempuan 20-35 tahun, gaya bahasa santai, brand bernama 'Kalyca'" rows="3"></textarea>
+      </div>
+
+      <div class="field" data-field="format">
+        <label for="formatInput">
+          <span class="field-title"><span class="field-letter">F</span>Format — Bentuk hasilnya harus seperti apa?</span>
+        </label>
+        <p class="hint">Panjang, struktur (list/tabel/paragraf), bahasa, jumlah item. Ini kunci hemat token — nggak perlu revisi bolak-balik.</p>
+        <textarea id="formatInput" placeholder="Contoh: 5 caption dalam list bernomor, maksimal 3 kalimat, sertakan 3 hashtag" rows="2"></textarea>
+      </div>
+
+      <div class="toggles">
+        <label class="toggle">
+          <input type="checkbox" id="compressToggle" checked />
+          <span>Ringkas input otomatis <em>(buang kata basa-basi seperti "tolong", "bisakah kamu")</em></span>
+        </label>
+        <label class="toggle">
+          <input type="checkbox" id="conciseToggle" checked />
+          <span>Minta AI jawab ringkas &amp; padat <em>(hemat token di jawaban AI)</em></span>
+        </label>
+      </div>
+
+      <button id="resetBtn" class="btn-ghost" type="button">Bersihkan semua</button>
+    </section>
+
+    <section class="panel output-panel">
+      <div class="output-head">
+        <h2>Prompt Siap Pakai</h2>
+        <div class="stats">
+          <span id="charCount">0 karakter</span>
+          <span class="dot">·</span>
+          <span id="tokenCount">≈0 token</span>
+        </div>
+      </div>
+
+      <pre id="output" class="output-box"></pre>
+
+      <div class="output-actions">
+        <button id="copyBtn" class="btn-primary" type="button">Salin Prompt</button>
+        <span id="copyStatus" class="copy-status" role="status" aria-live="polite"></span>
+      </div>
+
+      <div class="tips">
+        <h3>Kenapa format ini bikin hasil lebih baik?</h3>
+        <ul>
+          <li><strong>Role</strong> mengunci sudut pandang &amp; gaya jawaban AI sejak awal.</li>
+          <li><strong>Task</strong> yang spesifik mengurangi AI "menebak-nebak" maksud kamu.</li>
+          <li><strong>Context</strong> mencegah jawaban generik yang nggak sesuai kebutuhan.</li>
+          <li><strong>Format</strong> yang jelas = jawaban langsung terpakai, tanpa revisi berkali-kali (hemat token!).</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <p>Dibuat untuk membantu siapa saja menulis prompt AI yang efektif — nggak perlu jadi expert dulu.</p>
+  </footer>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
