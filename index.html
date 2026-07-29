@@ -3,190 +3,560 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kalkulator Kesiapan Finansial Menikah</title>
-<meta name="description" content="Cek kesehatan finansial dan kesiapanmu untuk menikah: penghasilan, dana darurat, investasi, daya beli, dan mitigasi risiko." />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>" />
-<link rel="stylesheet" href="style.css" />
+<title>Konoha Kas — Pencatatan Keuangan Tim</title>
+<meta name="description" content="Pencatatan keuangan sederhana bertema Naruto untuk dipakai bersama teman/tim." />
+<style>
+  :root{
+    --village-brown:#3a2a1e;
+    --village-dark:#241a12;
+    --orange:#ff7a1a;
+    --orange-dark:#d95f00;
+    --leaf-green:#3f7d4f;
+    --leaf-dark:#2c5a38;
+    --sand:#f4e3c1;
+    --sand-dark:#e6cf9d;
+    --red:#c62828;
+    --text-dark:#241a12;
+    --ok:#2e7d32;
+    --bad:#c62828;
+    --card-shadow: 0 4px 14px rgba(0,0,0,.18);
+    --radius: 14px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Trebuchet MS', 'Segoe UI', sans-serif;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(255,122,26,.15), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(63,125,79,.2), transparent 45%),
+      linear-gradient(180deg, #1c130c 0%, #2b1e14 100%);
+    color:var(--text-dark);
+    min-height:100vh;
+  }
+  header.hero{
+    text-align:center;
+    padding:38px 16px 26px;
+    color:var(--sand);
+    position:relative;
+  }
+  header.hero::before{
+    content:"🍥";
+    display:block;
+    font-size:44px;
+    filter: drop-shadow(0 0 10px rgba(255,122,26,.6));
+    margin-bottom:6px;
+  }
+  header.hero h1{
+    margin:0;
+    font-size:clamp(1.6rem, 4vw, 2.4rem);
+    letter-spacing:1px;
+    color:var(--orange);
+    text-shadow: 0 0 12px rgba(255,122,26,.5), 2px 2px 0 #1c130c;
+  }
+  header.hero p{
+    margin:8px 0 0;
+    color:var(--sand-dark);
+    font-size:.95rem;
+  }
+  .wrap{
+    max-width:980px;
+    margin:0 auto;
+    padding:0 16px 60px;
+  }
+  .card{
+    background:linear-gradient(180deg, var(--sand) 0%, var(--sand-dark) 100%);
+    border-radius:var(--radius);
+    box-shadow:var(--card-shadow);
+    border:2px solid var(--orange-dark);
+    padding:20px;
+    margin-bottom:22px;
+  }
+  .card h2{
+    margin:0 0 14px;
+    font-size:1.1rem;
+    color:var(--village-brown);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .members-bar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:6px;
+  }
+  .member-chip{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--village-brown);
+    color:var(--sand);
+    padding:8px 14px 8px 8px;
+    border-radius:999px;
+    cursor:pointer;
+    border:2px solid transparent;
+    transition:.15s;
+    font-size:.9rem;
+    user-select:none;
+  }
+  .member-chip .avatar{
+    width:28px;height:28px;border-radius:50%;
+    background:var(--orange);
+    display:flex;align-items:center;justify-content:center;
+    font-size:.85rem;font-weight:bold;color:#241a12;
+  }
+  .member-chip.active{
+    border-color:var(--orange);
+    background:var(--village-dark);
+    box-shadow:0 0 10px rgba(255,122,26,.6);
+  }
+  .member-chip .remove-x{
+    opacity:.6;
+    font-size:.8rem;
+    padding:0 2px;
+  }
+  .member-chip .remove-x:hover{opacity:1;color:var(--red);}
+  .add-member-form{
+    display:flex;
+    gap:8px;
+    margin-top:10px;
+  }
+  input, select{
+    font-family:inherit;
+    padding:9px 11px;
+    border-radius:8px;
+    border:1px solid #c8ad78;
+    background:#fffaf0;
+    font-size:.92rem;
+  }
+  button{
+    font-family:inherit;
+    cursor:pointer;
+    border:none;
+    border-radius:8px;
+    padding:9px 16px;
+    font-weight:bold;
+    font-size:.92rem;
+    background:var(--orange);
+    color:#241a12;
+    box-shadow:0 2px 0 var(--orange-dark);
+    transition:.1s;
+  }
+  button:hover{filter:brightness(1.08);}
+  button:active{transform:translateY(2px); box-shadow:none;}
+  button.secondary{
+    background:var(--leaf-green);
+    color:#fff;
+    box-shadow:0 2px 0 var(--leaf-dark);
+  }
+  button.danger{
+    background:var(--red);
+    color:#fff;
+    box-shadow:0 2px 0 #8e1c1c;
+    padding:5px 10px;
+    font-size:.78rem;
+  }
+  .stats-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(160px,1fr));
+    gap:14px;
+  }
+  .stat{
+    background:var(--village-dark);
+    color:var(--sand);
+    border-radius:10px;
+    padding:14px;
+    text-align:center;
+    border:1px solid var(--orange-dark);
+  }
+  .stat .label{font-size:.75rem;color:var(--sand-dark);text-transform:uppercase;letter-spacing:.5px;}
+  .stat .value{font-size:1.35rem;font-weight:bold;margin-top:4px;}
+  .stat.income .value{color:#8fd98f;}
+  .stat.expense .value{color:#ff9d9d;}
+  .stat.balance .value{color:var(--orange);}
+
+  form.tx-form{
+    display:grid;
+    grid-template-columns:1.2fr 1fr 1fr 1.4fr auto;
+    gap:10px;
+    align-items:end;
+  }
+  form.tx-form label{
+    display:block;
+    font-size:.72rem;
+    color:var(--village-brown);
+    margin-bottom:4px;
+    font-weight:bold;
+  }
+  .type-toggle{
+    display:flex;
+    gap:6px;
+  }
+  .type-toggle button{
+    flex:1;
+    opacity:.5;
+    background:#ddd;
+    color:#333;
+    box-shadow:none;
+  }
+  .type-toggle button.on.income{background:var(--leaf-green);color:#fff;opacity:1;}
+  .type-toggle button.on.expense{background:var(--red);color:#fff;opacity:1;}
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.88rem;
+  }
+  thead th{
+    text-align:left;
+    padding:8px 10px;
+    color:var(--village-brown);
+    border-bottom:2px solid var(--orange-dark);
+    font-size:.75rem;
+    text-transform:uppercase;
+  }
+  tbody td{
+    padding:9px 10px;
+    border-bottom:1px solid #d8c193;
+  }
+  tbody tr:hover{background:rgba(255,122,26,.08);}
+  .amount.income{color:var(--ok);font-weight:bold;}
+  .amount.expense{color:var(--bad);font-weight:bold;}
+  .tag{
+    display:inline-block;
+    padding:2px 8px;
+    border-radius:999px;
+    background:var(--village-brown);
+    color:var(--sand);
+    font-size:.72rem;
+  }
+  .empty-state{
+    text-align:center;
+    padding:30px 10px;
+    color:#7a6849;
+    font-style:italic;
+  }
+  footer{
+    text-align:center;
+    color:var(--sand-dark);
+    font-size:.8rem;
+    padding-bottom:30px;
+  }
+  .no-member-warning{
+    background:#fff3cd;
+    border:1px solid #e0c060;
+    padding:10px 14px;
+    border-radius:8px;
+    font-size:.85rem;
+    margin-bottom:14px;
+  }
+  @media (max-width:720px){
+    form.tx-form{grid-template-columns:1fr 1fr;}
+    form.tx-form .full{grid-column:1/-1;}
+  }
+</style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap">
-    <div class="brand">💍 <span>Mapan?</span></div>
-    <p class="tagline">Kalkulator Kesiapan Finansial untuk Menikah</p>
-  </div>
+<header class="hero">
+  <h1>Konoha Kas</h1>
+  <p>Pencatatan keuangan bersama ala shinobi Konohagakure — catat pemasukan &amp; pengeluaran tiap anggota tim.</p>
 </header>
 
-<main class="wrap">
+<div class="wrap">
 
-  <section class="intro">
-    <h1>Apakah aku sudah cukup mapan untuk menikah?</h1>
-    <p>
-      Isi data finansialmu (atau gabungan dengan calon pasangan) di bawah ini. Kalkulator ini akan menilai
-      <strong>lima pilar kesiapan finansial</strong>: kecukupan penghasilan, keamanan utang, dana darurat,
-      kebiasaan menabung &amp; investasi, serta proteksi risiko &mdash; lalu memberi skor dan rekomendasi konkret.
-    </p>
-    <p class="disclaimer">
-      ⚠️ Ini adalah alat bantu edukasi berbasis prinsip perencanaan keuangan umum (rasio utang, dana darurat,
-      tingkat menabung, dsb), <em>bukan</em> nasihat keuangan profesional. Angka acuan biaya hidup bersifat estimasi kasar
-      dan sebaiknya kamu sesuaikan dengan kondisi riil kotamu.
-    </p>
+  <section class="card">
+    <h2>🍃 Anggota Tim (Shinobi)</h2>
+    <div class="members-bar" id="membersBar"></div>
+    <form class="add-member-form" id="addMemberForm">
+      <input type="text" id="newMemberName" placeholder="Nama shinobi baru... (mis. Naruto)" required maxlength="24" />
+      <button type="submit">+ Tambah</button>
+    </form>
   </section>
 
-  <form id="calc-form">
+  <div id="noMemberWarning" class="card no-member-warning" style="display:none;">
+    Tambahkan minimal satu anggota tim terlebih dahulu untuk mulai mencatat transaksi.
+  </div>
 
-    <section class="card">
-      <h2><span class="num">1</span> Penghasilan &amp; Rumah Tangga</h2>
-      <div class="grid-2">
-        <label>
-          Penghasilan bersih bulananmu (take-home pay)
-          <input type="number" min="0" step="50000" id="incomeSelf" placeholder="cth. 8000000" required />
-        </label>
-        <label>
-          Penghasilan bersih bulanan calon pasangan (jika digabung)
-          <input type="number" min="0" step="50000" id="incomePartner" placeholder="cth. 6000000" />
-        </label>
+  <section class="card" id="statsCard" style="display:none;">
+    <h2>📊 Ringkasan — <span id="statsWho"></span></h2>
+    <div class="stats-grid">
+      <div class="stat income">
+        <div class="label">Pemasukan</div>
+        <div class="value" id="statIncome">Rp 0</div>
       </div>
-      <label class="checkbox-row">
-        <input type="checkbox" id="combineFinance" checked />
-        Keuangan akan digabung setelah menikah
-      </label>
-      <div class="grid-2">
-        <label>
-          Kota/wilayah tempat tinggal setelah menikah
-          <select id="cityTier">
-            <option value="1">Kota besar (Jabodetabek, Bandung, Surabaya, Medan, dll)</option>
-            <option value="2">Kota sedang (ibu kota provinsi lainnya)</option>
-            <option value="3">Kota kecil / kabupaten</option>
-          </select>
-        </label>
-        <label>
-          Rencana jumlah anak dalam waktu dekat
-          <input type="number" min="0" max="6" step="1" id="dependents" value="0" />
-        </label>
+      <div class="stat expense">
+        <div class="label">Pengeluaran</div>
+        <div class="value" id="statExpense">Rp 0</div>
       </div>
-    </section>
-
-    <section class="card">
-      <h2><span class="num">2</span> Pengeluaran &amp; Utang Bulanan</h2>
-      <div class="grid-2">
-        <label>
-          Total pengeluaran rutin bulanan (makan, transport, tagihan, sewa/KPR, dll)
-          <input type="number" min="0" step="50000" id="monthlyExpenses" placeholder="cth. 6000000" required />
-        </label>
-        <label>
-          Termasuk di atas: cicilan KPR / sewa tempat tinggal
-          <input type="number" min="0" step="50000" id="housingCost" placeholder="cth. 2000000" value="0" />
-        </label>
+      <div class="stat balance">
+        <div class="label">Saldo</div>
+        <div class="value" id="statBalance">Rp 0</div>
       </div>
-      <label>
-        Total cicilan utang konsumtif bulanan (kartu kredit, KTA, cicilan kendaraan, paylater, dll &mdash; di luar KPR)
-        <input type="number" min="0" step="50000" id="debtInstallments" placeholder="cth. 1000000" value="0" />
-      </label>
-    </section>
+    </div>
+  </section>
 
-    <section class="card">
-      <h2><span class="num">3</span> Dana Darurat &amp; Investasi</h2>
-      <div class="grid-2">
-        <label>
-          Total dana darurat saat ini (tabungan likuid, bukan investasi jangka panjang)
-          <input type="number" min="0" step="100000" id="emergencyFund" placeholder="cth. 30000000" value="0" />
-        </label>
-        <label>
-          Nominal ditabung + diinvestasikan setiap bulan
-          <input type="number" min="0" step="50000" id="monthlySavingsInvestment" placeholder="cth. 1500000" value="0" />
-        </label>
-      </div>
-      <label>
-        Total aset investasi saat ini (reksadana, saham, emas, dll) &mdash; opsional, untuk konteks
-        <input type="number" min="0" step="100000" id="investmentAssets" placeholder="cth. 10000000" value="0" />
-      </label>
-    </section>
-
-    <section class="card">
-      <h2><span class="num">4</span> Proteksi &amp; Mitigasi Risiko</h2>
-      <div class="grid-2">
-        <label class="checkbox-row">
-          <input type="checkbox" id="hasHealthInsurance" />
-          Punya asuransi kesehatan (BPJS/swasta) yang aktif
-        </label>
-        <label class="checkbox-row">
-          <input type="checkbox" id="hasLifeInsurance" />
-          Punya asuransi jiwa aktif
-        </label>
-      </div>
-      <label>
-        Nilai pertanggungan (Uang Pertanggungan) asuransi jiwa, jika ada
-        <input type="number" min="0" step="1000000" id="lifeInsuranceCoverage" placeholder="cth. 500000000" value="0" />
-      </label>
-    </section>
-
-    <section class="card">
-      <h2><span class="num">5</span> Rencana Dana Pernikahan</h2>
-      <div class="grid-2">
-        <label>
-          Estimasi total biaya pernikahan
-          <input type="number" min="0" step="500000" id="weddingCostEstimate" placeholder="cth. 100000000" value="0" />
-        </label>
-        <label>
-          Dana yang sudah tersedia untuk itu (tanpa berutang)
-          <input type="number" min="0" step="500000" id="weddingFundsAvailable" placeholder="cth. 60000000" value="0" />
-        </label>
-      </div>
-      <label class="checkbox-row">
-        <input type="checkbox" id="weddingFundedByDebt" />
-        Kekurangan dana pernikahan rencananya ditutup dengan berutang (pinjol, KTA, kartu kredit, dll)
-      </label>
-    </section>
-
-    <button type="submit" class="btn-primary">Hitung Skor Kesiapan Finansial</button>
-  </form>
-
-  <section id="results" class="results hidden" aria-live="polite">
-    <h2>Hasil Analisis Kesiapan Finansialmu</h2>
-
-    <div class="score-panel">
-      <div class="gauge" id="gauge">
-        <div class="gauge-inner">
-          <span id="scoreNumber">0</span>
-          <small>/ 100</small>
+  <section class="card" id="formCard" style="display:none;">
+    <h2>➕ Catat Transaksi Baru</h2>
+    <form class="tx-form" id="txForm">
+      <div>
+        <label>Jenis</label>
+        <div class="type-toggle">
+          <button type="button" class="on income" data-type="income">Pemasukan</button>
+          <button type="button" data-type="expense">Pengeluaran</button>
         </div>
       </div>
-      <div class="score-summary">
-        <h3 id="scoreLabel">&mdash;</h3>
-        <p id="scoreDesc"></p>
+      <div>
+        <label>Jumlah (Rp)</label>
+        <input type="number" id="txAmount" min="1" step="1" placeholder="50000" required />
+      </div>
+      <div>
+        <label>Kategori</label>
+        <select id="txCategory">
+          <option>Misi</option>
+          <option>Ramen Ichiraku</option>
+          <option>Peralatan Ninja</option>
+          <option>Latihan</option>
+          <option>Hadiah</option>
+          <option>Lainnya</option>
+        </select>
+      </div>
+      <div class="full">
+        <label>Catatan</label>
+        <input type="text" id="txNote" placeholder="Misal: hasil misi rank C" maxlength="60" />
+      </div>
+      <div>
+        <label>&nbsp;</label>
+        <button type="submit" class="secondary" style="width:100%;">Simpan</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card" id="historyCard" style="display:none;">
+    <h2>📜 Riwayat Transaksi — <span id="historyWho"></span></h2>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Tanggal</th>
+            <th>Jenis</th>
+            <th>Kategori</th>
+            <th>Catatan</th>
+            <th style="text-align:right;">Jumlah</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="txTableBody"></tbody>
+      </table>
+    </div>
+    <div id="emptyHistory" class="empty-state" style="display:none;">Belum ada transaksi tercatat. Ayo mulai menabung seperti Nara mengumpulkan strategi!</div>
+  </section>
+
+  <section class="card">
+    <h2>🏘️ Total Kas Desa (Semua Anggota)</h2>
+    <div class="stats-grid">
+      <div class="stat income">
+        <div class="label">Total Pemasukan</div>
+        <div class="value" id="villageIncome">Rp 0</div>
+      </div>
+      <div class="stat expense">
+        <div class="label">Total Pengeluaran</div>
+        <div class="value" id="villageExpense">Rp 0</div>
+      </div>
+      <div class="stat balance">
+        <div class="label">Total Saldo</div>
+        <div class="value" id="villageBalance">Rp 0</div>
       </div>
     </div>
-
-    <div class="breakdown" id="breakdown"></div>
-
-    <div class="recommendations">
-      <h3>Rekomendasi Tindak Lanjut</h3>
-      <ul id="recoList"></ul>
-    </div>
   </section>
 
-  <section class="methodology card">
-    <h2>Metodologi Singkat</h2>
-    <p>Skor 0&ndash;100 merupakan gabungan berbobot dari lima pilar, memakai acuan yang umum dipakai dalam edukasi perencanaan keuangan (mis. rasio utang terhadap penghasilan, aturan alokasi menabung, dan standar bulan dana darurat untuk keluarga):</p>
-    <ul class="method-list">
-      <li><strong>Kecukupan Penghasilan (25%)</strong> &mdash; penghasilan gabungan dibandingkan estimasi biaya hidup layak untuk jumlah anggota keluarga di kotamu.</li>
-      <li><strong>Keamanan Utang (15%)</strong> &mdash; total cicilan (KPR + utang konsumtif) idealnya di bawah 35% penghasilan, idealnya di bawah 20%.</li>
-      <li><strong>Dana Darurat (20%)</strong> &mdash; target 6 bulan pengeluaran untuk pasangan, +1 bulan per rencana anak (maks 12 bulan).</li>
-      <li><strong>Tabungan &amp; Investasi (20%)</strong> &mdash; idealnya minimal 20% penghasilan dialokasikan untuk menabung/investasi (prinsip mirip aturan 50/30/20).</li>
-      <li><strong>Proteksi Risiko (10%)</strong> &mdash; kepemilikan asuransi kesehatan &amp; jiwa dengan nilai pertanggungan memadai (idealnya &ge; 5&times; penghasilan tahunan pencari nafkah utama).</li>
-      <li><strong>Kesiapan Dana Pernikahan (10%)</strong> &mdash; proporsi biaya pernikahan yang sudah tersedia tanpa berutang.</li>
-    </ul>
-  </section>
+</div>
 
-</main>
+<footer>Data tersimpan lokal di browser masing-masing (localStorage). Dattebayo! 🍥</footer>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <p>Dibuat sebagai alat bantu refleksi finansial. Selalu diskusikan keputusan finansial besar dengan pasangan dan, bila perlu, perencana keuangan bersertifikat.</p>
-  </div>
-</footer>
+<script>
+(function(){
+  const STORAGE_KEY = 'konoha-kas-v1';
 
-<script src="script.js"></script>
+  function loadState(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(raw) return JSON.parse(raw);
+    }catch(e){}
+    return { members: [], activeMemberId: null, transactions: [] };
+  }
+  function saveState(){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  let state = loadState();
+  let selectedType = 'income';
+
+  const membersBar = document.getElementById('membersBar');
+  const addMemberForm = document.getElementById('addMemberForm');
+  const newMemberName = document.getElementById('newMemberName');
+  const noMemberWarning = document.getElementById('noMemberWarning');
+  const formCard = document.getElementById('formCard');
+  const statsCard = document.getElementById('statsCard');
+  const historyCard = document.getElementById('historyCard');
+  const txForm = document.getElementById('txForm');
+  const txTableBody = document.getElementById('txTableBody');
+  const emptyHistory = document.getElementById('emptyHistory');
+
+  function fmt(n){
+    return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+  }
+
+  function initials(name){
+    return name.trim().slice(0,2).toUpperCase();
+  }
+
+  function uid(){
+    return Math.random().toString(36).slice(2,10) + Date.now().toString(36);
+  }
+
+  function activeMember(){
+    return state.members.find(m => m.id === state.activeMemberId) || null;
+  }
+
+  function renderMembers(){
+    membersBar.innerHTML = '';
+    state.members.forEach(m => {
+      const chip = document.createElement('div');
+      chip.className = 'member-chip' + (m.id === state.activeMemberId ? ' active' : '');
+      chip.innerHTML = `<span class="avatar">${initials(m.name)}</span><span>${escapeHtml(m.name)}</span><span class="remove-x" title="Hapus anggota">✕</span>`;
+      chip.addEventListener('click', (e) => {
+        if(e.target.classList.contains('remove-x')){
+          e.stopPropagation();
+          if(confirm(`Hapus ${m.name} beserta seluruh transaksinya?`)){
+            state.members = state.members.filter(x => x.id !== m.id);
+            state.transactions = state.transactions.filter(t => t.memberId !== m.id);
+            if(state.activeMemberId === m.id){
+              state.activeMemberId = state.members.length ? state.members[0].id : null;
+            }
+            saveState();
+            renderAll();
+          }
+          return;
+        }
+        state.activeMemberId = m.id;
+        saveState();
+        renderAll();
+      });
+      membersBar.appendChild(chip);
+    });
+  }
+
+  function escapeHtml(s){
+    const d = document.createElement('div');
+    d.textContent = s;
+    return d.innerHTML;
+  }
+
+  function renderPanels(){
+    const hasMembers = state.members.length > 0;
+    noMemberWarning.style.display = hasMembers ? 'none' : 'block';
+    const member = activeMember();
+    const showActive = hasMembers && member;
+    formCard.style.display = showActive ? 'block' : 'none';
+    statsCard.style.display = showActive ? 'block' : 'none';
+    historyCard.style.display = showActive ? 'block' : 'none';
+    if(!showActive) return;
+
+    document.getElementById('statsWho').textContent = member.name;
+    document.getElementById('historyWho').textContent = member.name;
+
+    const myTx = state.transactions.filter(t => t.memberId === member.id);
+    const income = myTx.filter(t => t.type === 'income').reduce((s,t) => s + t.amount, 0);
+    const expense = myTx.filter(t => t.type === 'expense').reduce((s,t) => s + t.amount, 0);
+
+    document.getElementById('statIncome').textContent = fmt(income);
+    document.getElementById('statExpense').textContent = fmt(expense);
+    document.getElementById('statBalance').textContent = fmt(income - expense);
+
+    const sorted = [...myTx].sort((a,b) => b.createdAt - a.createdAt);
+    txTableBody.innerHTML = '';
+    emptyHistory.style.display = sorted.length ? 'none' : 'block';
+    sorted.forEach(t => {
+      const tr = document.createElement('tr');
+      const dateStr = new Date(t.createdAt).toLocaleDateString('id-ID', { day:'2-digit', month:'short', year:'numeric' });
+      tr.innerHTML = `
+        <td>${dateStr}</td>
+        <td>${t.type === 'income' ? '📥 Pemasukan' : '📤 Pengeluaran'}</td>
+        <td><span class="tag">${escapeHtml(t.category)}</span></td>
+        <td>${escapeHtml(t.note || '-')}</td>
+        <td style="text-align:right;" class="amount ${t.type}">${t.type === 'income' ? '+' : '-'}${fmt(t.amount)}</td>
+        <td><button class="danger" data-id="${t.id}">Hapus</button></td>
+      `;
+      tr.querySelector('button.danger').addEventListener('click', () => {
+        state.transactions = state.transactions.filter(x => x.id !== t.id);
+        saveState();
+        renderAll();
+      });
+      txTableBody.appendChild(tr);
+    });
+  }
+
+  function renderVillageTotals(){
+    const income = state.transactions.filter(t => t.type === 'income').reduce((s,t) => s + t.amount, 0);
+    const expense = state.transactions.filter(t => t.type === 'expense').reduce((s,t) => s + t.amount, 0);
+    document.getElementById('villageIncome').textContent = fmt(income);
+    document.getElementById('villageExpense').textContent = fmt(expense);
+    document.getElementById('villageBalance').textContent = fmt(income - expense);
+  }
+
+  function renderAll(){
+    renderMembers();
+    renderPanels();
+    renderVillageTotals();
+  }
+
+  addMemberForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = newMemberName.value.trim();
+    if(!name) return;
+    const m = { id: uid(), name };
+    state.members.push(m);
+    if(!state.activeMemberId) state.activeMemberId = m.id;
+    newMemberName.value = '';
+    saveState();
+    renderAll();
+  });
+
+  document.querySelectorAll('.type-toggle button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selectedType = btn.dataset.type;
+      document.querySelectorAll('.type-toggle button').forEach(b => {
+        b.classList.toggle('on', b.dataset.type === selectedType);
+      });
+    });
+  });
+
+  txForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const member = activeMember();
+    if(!member) return;
+    const amount = parseFloat(document.getElementById('txAmount').value);
+    if(!amount || amount <= 0) return;
+    const category = document.getElementById('txCategory').value;
+    const note = document.getElementById('txNote').value.trim();
+    state.transactions.push({
+      id: uid(),
+      memberId: member.id,
+      type: selectedType,
+      amount,
+      category,
+      note,
+      createdAt: Date.now()
+    });
+    saveState();
+    txForm.reset();
+    document.getElementById('txCategory').value = category;
+    renderAll();
+  });
+
+  renderAll();
+})();
+</script>
 </body>
 </html>
