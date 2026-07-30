@@ -1,0 +1,6 @@
+.git
+.gitignore
+README.md
+SETUP_VERCEL.md
+.env.example
+node_modules
