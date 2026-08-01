@@ -1,0 +1,81 @@
+Timestamp,Jenis Kelamin,Usia (tahun),Lama menggunakan aplikasi (bulan),PU1 - Sistem ini bermanfaat untuk pekerjaan saya,PU2 - Sistem ini mempercepat penyelesaian pekerjaan saya,PU3 - Sistem ini meningkatkan produktivitas saya,PU4 - Secara keseluruhan sistem ini berguna bagi saya,EOU1 - Sistem ini mudah dipelajari,EOU2 - Interaksi dengan sistem ini jelas dan mudah dipahami,EOU3 - Sistem ini sulit digunakan,EOU4 - Saya merasa terampil menggunakan sistem ini,ATT1 - Saya menyukai penggunaan sistem ini,ATT2 - Menggunakan sistem ini adalah ide yang baik,ATT3 - Saya memiliki sikap positif terhadap sistem ini,BI1 - Saya berniat terus menggunakan sistem ini ke depannya,BI2 - Saya akan merekomendasikan sistem ini ke orang lain,BI3 - Saya berencana menggunakan sistem ini secara rutin,Saran/masukan (opsional)
+2026-01-10T09:10:00Z,Perempuan,29,17,4,4,4,5,4,4,,4,2,1,2,5,1,5,Kadang loading agak lama.
+2026-02-11T09:11:00Z,Laki-laki,25,,4,4,4,5,3,3,2,5,2,4,3,1,4,5,Kadang loading agak lama.
+2026-03-12T09:12:00Z,Laki-laki,34,13,5,5,5,4,4,5,2,5,5,4,2,4,5,4,
+2026-04-13T09:13:00Z,Perempuan,35,11,4,4,3,5,5,3,,5,5,3,4,2,5,3,
+2026-05-14T09:14:00Z,Perempuan,24,29,3,3,4,5,4,4,2,4,4,4,3,5,3,2,
+2026-06-15T09:15:00Z,Perempuan,,18,5,3,4,5,3,5,2,5,5,5,2,4,5,5,Kadang loading agak lama.
+2026-01-16T09:16:00Z,Laki-laki,33,20,5,5,4,3,1,4,4,4,3,3,3,4,5,3,Tampilan bisa lebih sederhana.
+2026-02-17T09:17:00Z,Laki-laki,27,17,4,4,4,4,,3,1,4,2,2,3,4,5,4,Tampilan bisa lebih sederhana.
+2026-03-10T09:18:00Z,Laki-laki,32,19,2,4,4,1,4,5,1,5,4,5,4,4,5,5,Tampilan bisa lebih sederhana.
+2026-04-11T09:19:00Z,Laki-laki,35,29,4,4,4,4,4,4,2,3,4,4,5,3,5,4,Tampilan bisa lebih sederhana.
+2026-05-12T09:20:00Z,Laki-laki,34,22,5,2,2,4,5,,1,3,4,5,2,3,3,5,Tampilan bisa lebih sederhana.
+2026-06-13T09:21:00Z,Perempuan,29,9,2,1,3,5,5,,3,4,5,3,5,5,4,3,Tampilan bisa lebih sederhana.
+2026-01-14T09:22:00Z,Laki-laki,4,12,4,4,5,5,5,3,2,5,5,3,4,5,3,3,Tampilan bisa lebih sederhana.
+2026-02-15T09:23:00Z,Laki-laki,30,18,5,3,5,4,,5,2,4,4,5,4,2,4,4,Tampilan bisa lebih sederhana.
+2026-03-16T09:24:00Z,Laki-laki,29,7,3,5,3,5,2,4,2,3,4,5,1,2,4,4,Kadang loading agak lama.
+2026-04-17T09:25:00Z,Perempuan,30,29,5,3,,4,4,4,2,4,3,5,3,4,4,4,Kadang loading agak lama.
+2026-05-10T09:26:00Z,Laki-laki,21,22,5,4,4,4,5,4,2,4,5,4,5,4,4,4,Kadang loading agak lama.
+2026-06-11T09:27:00Z,,21,8,1,2,,4,4,5,1,4,4,4,4,3,5,5,Tampilan bisa lebih sederhana.
+2026-01-12T09:28:00Z,Perempuan,29,14,5,5,5,3,5,,2,5,5,5,4,3,5,4,
+2026-02-13T09:29:00Z,Perempuan,27,11,4,4,4,4,4,4,1,4,1,4,2,5,5,3,
+2026-03-14T09:30:00Z,Perempuan,26,21,3,5,5,3,4,5,2,5,,5,4,4,4,4,Fitur pencarian perlu ditingkatkan.
+2026-04-15T09:31:00Z,Laki-laki,22,12,4,4,4,5,3,4,3,4,3,2,2,4,4,4,Kadang loading agak lama.
+2026-05-16T09:32:00Z,Laki-laki,27,15,3,5,2,2,4,4,1,3,4,1,2,4,1,5,
+2026-06-17T09:33:00Z,Perempuan,24,22,5,5,5,1,5,3,1,4,2,5,1,3,4,3,Fitur pencarian perlu ditingkatkan.
+2026-01-10T09:34:00Z,Perempuan,29,,5,5,5,4,2,4,2,2,5,4,3,2,3,4,Tampilan bisa lebih sederhana.
+2026-02-11T09:35:00Z,Laki-laki,27,16,2,4,5,4,3,4,1,5,5,2,5,4,4,4,
+2026-03-12T09:36:00Z,Laki-laki,34,23,4,,5,,5,5,2,4,4,5,4,4,5,4,
+2026-04-13T09:37:00Z,Perempuan,31,15,4,5,4,4,3,,1,3,3,5,5,5,5,3,Kadang loading agak lama.
+2026-05-14T09:38:00Z,Laki-laki,32,27,4,5,4,4,4,5,3,5,2,4,5,4,2,5,Tampilan bisa lebih sederhana.
+2026-06-15T09:39:00Z,Perempuan,28,11,3,4,4,3,5,4,1,4,4,4,4,5,4,4,Fitur pencarian perlu ditingkatkan.
+2026-01-16T09:40:00Z,Perempuan,22,540,,4,5,3,4,5,,5,4,3,5,3,4,5,Tampilan bisa lebih sederhana.
+2026-02-17T09:41:00Z,Perempuan,33,27,3,4,3,5,5,5,1,4,5,5,5,4,4,2,
+2026-03-10T09:42:00Z,Laki-laki,31,12,,3,5,4,5,3,1,5,5,5,3,4,5,4,
+2026-04-11T09:43:00Z,Laki-laki,34,28,4,4,2,4,3,5,,3,5,4,4,3,5,4,Tampilan bisa lebih sederhana.
+2026-05-12T09:44:00Z,Perempuan,22,27,3,5,3,4,4,4,2,,3,4,5,4,3,3,Kadang loading agak lama.
+2026-06-13T09:45:00Z,Perempuan,28,20,3,3,4,4,3,4,3,4,4,2,3,5,4,5,Tampilan bisa lebih sederhana.
+2026-01-14T09:46:00Z,Laki-laki,33,21,5,5,4,3,5,4,1,5,4,5,1,5,2,4,Kadang loading agak lama.
+2026-02-15T09:47:00Z,Perempuan,33,20,4,4,5,4,2,3,2,5,5,3,1,2,2,4,
+2026-03-16T09:48:00Z,Laki-laki,31,28,2,4,3,1,5,4,2,2,4,4,2,4,4,4,Kadang loading agak lama.
+2026-04-17T09:49:00Z,Perempuan,30,11,4,5,3,5,5,5,2,4,5,4,3,5,1,5,Tampilan bisa lebih sederhana.
+2026-05-10T09:10:00Z,Laki-laki,30,23,4,5,4,4,5,4,1,5,2,4,5,4,4,3,
+2026-06-11T09:11:00Z,Laki-laki,22,29,3,4,4,4,4,2,1,5,4,4,5,5,2,5,
+2026-01-12T09:12:00Z,Perempuan,21,25,4,3,5,4,3,3,1,5,5,5,5,3,4,2,Fitur pencarian perlu ditingkatkan.
+2026-02-13T09:13:00Z,Laki-laki,31,15,2,4,5,4,4,5,1,4,2,4,4,5,1,2,Fitur pencarian perlu ditingkatkan.
+2026-03-14T09:14:00Z,Perempuan,28,7,2,4,4,4,5,1,2,5,4,3,5,3,5,4,
+2026-04-15T09:15:00Z,Perempuan,33,,4,3,4,3,2,3,3,,2,2,3,3,4,4,
+2026-05-16T09:16:00Z,Perempuan,30,17,3,5,3,4,4,2,2,5,5,4,1,5,4,4,Fitur pencarian perlu ditingkatkan.
+2026-06-17T09:17:00Z,Laki-laki,4,25,,3,5,4,4,3,1,3,3,5,4,4,5,4,
+2026-01-10T09:18:00Z,Laki-laki,32,8,4,4,5,5,5,5,1,,4,4,4,4,5,3,Tampilan bisa lebih sederhana.
+2026-02-11T09:19:00Z,Perempuan,24,23,5,3,4,5,5,2,4,4,4,4,3,2,5,5,
+2026-03-12T09:20:00Z,Laki-laki,28,10,5,5,5,,5,2,1,5,,5,5,4,5,3,
+2026-04-13T09:21:00Z,Perempuan,29,19,4,5,4,4,4,2,1,3,2,4,5,5,2,5,
+2026-05-14T09:22:00Z,Perempuan,28,14,3,4,3,3,2,4,2,4,3,5,5,4,3,3,
+2026-06-15T09:23:00Z,Perempuan,25,13,3,3,4,3,5,5,2,5,4,1,4,5,5,5,
+2026-01-16T09:24:00Z,Laki-laki,24,9,5,3,4,5,4,4,1,2,,5,3,3,3,,"Sudah cukup baik, terima kasih."
+2026-02-17T09:25:00Z,Laki-laki,34,28,3,1,4,5,4,2,1,1,4,5,5,3,5,5,
+2026-03-10T09:26:00Z,Perempuan,25,18,4,1,1,5,5,3,1,3,,4,3,5,5,4,
+2026-04-11T09:27:00Z,Laki-laki,31,8,5,4,5,5,4,3,1,4,1,5,5,4,5,,
+2026-05-12T09:28:00Z,Perempuan,24,,4,4,5,4,4,4,2,5,5,5,3,4,4,4,Tampilan bisa lebih sederhana.
+2026-06-13T09:29:00Z,Perempuan,24,,5,4,3,4,2,4,2,2,2,1,3,,5,5,
+2026-01-14T09:30:00Z,Perempuan,,19,5,3,4,5,3,4,5,4,,5,4,4,5,2,
+2026-02-15T09:31:00Z,Perempuan,24,15,4,4,4,5,4,3,1,5,4,5,1,5,5,4,
+2026-03-16T09:32:00Z,Perempuan,34,16,5,4,5,3,3,4,4,4,4,4,5,4,4,5,
+2026-04-17T09:33:00Z,Laki-laki,26,29,5,4,,4,5,5,1,5,2,4,3,2,5,,Kadang loading agak lama.
+2026-05-10T09:34:00Z,Laki-laki,31,21,4,5,3,,4,4,1,5,5,4,1,5,4,4,Tampilan bisa lebih sederhana.
+2026-06-11T09:35:00Z,Laki-laki,33,15,4,4,,4,2,3,2,3,5,5,4,5,5,2,Kadang loading agak lama.
+2026-01-12T09:36:00Z,Laki-laki,30,27,4,4,5,5,1,4,1,5,4,4,4,4,3,3,
+2026-02-13T09:37:00Z,Laki-laki,32,11,5,5,4,3,4,4,1,5,5,5,4,3,5,2,Fitur pencarian perlu ditingkatkan.
+2026-03-14T09:38:00Z,Perempuan,32,12,4,4,5,2,5,5,1,5,5,4,2,5,4,5,Tampilan bisa lebih sederhana.
+2026-04-15T09:39:00Z,Perempuan,22,18,2,4,5,4,2,5,1,3,4,4,5,4,5,5,Fitur pencarian perlu ditingkatkan.
+2026-05-16T09:40:00Z,Perempuan,23,13,2,5,5,5,3,4,2,3,4,1,5,4,2,3,
+2026-06-17T09:41:00Z,Perempuan,29,24,4,5,5,5,5,3,2,2,3,3,3,4,4,5,Kadang loading agak lama.
+2026-01-10T09:42:00Z,Laki-laki,21,25,5,1,5,4,4,5,2,3,2,4,3,5,4,2,
+2026-02-11T09:43:00Z,Perempuan,24,22,5,2,3,,4,3,1,4,,3,3,5,1,4,Fitur pencarian perlu ditingkatkan.
+2026-03-12T09:44:00Z,Laki-laki,23,14,2,3,3,2,5,4,2,3,4,5,3,5,5,3,Kadang loading agak lama.
+2026-04-13T09:45:00Z,Laki-laki,24,13,2,3,5,5,2,4,2,4,4,4,4,5,5,4,
+2026-05-14T09:46:00Z,Laki-laki,22,25,5,4,3,3,5,5,1,4,4,5,3,5,2,,
+2026-06-15T09:47:00Z,Laki-laki,22,21,5,5,4,4,4,5,1,3,5,4,5,4,4,5,
+2026-01-16T09:48:00Z,Perempuan,34,21,1,3,4,5,3,5,1,5,5,5,4,5,4,,
+2026-02-17T09:49:00Z,Laki-laki,30,16,5,3,4,1,4,4,2,1,4,3,3,3,5,5,Tampilan bisa lebih sederhana.
