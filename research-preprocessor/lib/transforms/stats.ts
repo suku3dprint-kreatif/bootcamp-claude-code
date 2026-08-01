@@ -34,6 +34,21 @@ export function stdDev(values: number[]): number {
   return Math.sqrt(variance);
 }
 
+/** Avoids Math.min(...values) / Math.max(...values), which can throw
+ * "Maximum call stack size exceeded" on large arrays (tens of thousands of
+ * rows) because spread arguments go through the call stack. */
+export function minValue(values: number[]): number {
+  let result = Infinity;
+  for (const v of values) if (v < result) result = v;
+  return result;
+}
+
+export function maxValue(values: number[]): number {
+  let result = -Infinity;
+  for (const v of values) if (v > result) result = v;
+  return result;
+}
+
 export function mode<T extends string | number>(values: T[]): T | undefined {
   if (values.length === 0) return undefined;
   const counts = new Map<T, number>();
